@@ -53,3 +53,5 @@ class CityRepository {
 }
 
 module.exports = CityRepository;
+// this is the class name which is exported
+// it has to be the same
