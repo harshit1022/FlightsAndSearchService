@@ -89,7 +89,7 @@ const update = async (req, res) => {
   }  
 }
 
-modules.export = {
+module.exports = {
   create,
   destroy,
   update,
