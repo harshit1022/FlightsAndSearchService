@@ -43,6 +43,13 @@ and then execute `npx sequelize db:migrate`
 - City
 - Airport
 
-- One flight can have 1 Airplane only, but an Airplane can be used in many flights
-- One city can have many Airports, but an Airport can belong to only 1 city
-- One Airport can have many flights
+- One Flight can have 1 Airplane only, but an Airplane can be used in many flights
+- One City can have many Airports, but an Airport can belong to only 1 City
+- One Airport can have many Flights
+
+
+
+#Tables
+
+### City -> id, name, created_at, updated_at
+### Airport -> id, name, city_id, address, created_at, updated_at
