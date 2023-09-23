@@ -10,7 +10,10 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      this.belongsTo(models.City, {
+        foreignKey: 'cityId',
+        onDelete: 'CASCADE'
+      })
     }
   }
   Airport.init({
@@ -19,7 +22,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false
     },
     address: DataTypes.STRING,
-    cityId: DataTypes.INTEGER
+    cityId: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   }, {
     sequelize,
     modelName: 'Airport',
