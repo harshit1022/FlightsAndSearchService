@@ -53,3 +53,13 @@ and then execute `npx sequelize db:migrate`
 
 ### City -> id, name, created_at, updated_at
 ### Airport -> id, name, city_id, address, created_at, updated_at
+
+```
+npx sequelize model:generate --name Airport --attributes name:String,address:String,cityId:integer
+
+```
+
+```
+npx sequelize db:seed:all
+
+```
