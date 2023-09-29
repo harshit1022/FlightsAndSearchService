@@ -5,6 +5,7 @@ const { PORT } = require('./config/serverConfig');
 const ApiRoutes = require('./routes/index');
 
 const {Airport, City} = require('./models/index');
+const db = require('./models/index');
 
 const setupAndStartServer = async () => {
 
@@ -18,48 +19,28 @@ const setupAndStartServer = async () => {
   app.listen(PORT, async () => {
     console.log(`Server started on PORT ${PORT}`);
 
-    // const airports = await Airport.findAll();
-    // const airports = await City.findAll({
-    //   where: {
-    //     id: 2
-    //   },
-    //   include: [
-    //     {
-    //       model: Airport
-    //     }
-    //   ]
-    // });
-    // console.log(airports);
+    // Adding Airport and then changing its City
+    // Airport was Added
+    // but couldn't change its City
 
-    // const cityName = "Bengalore"; // Replace with the desired city name
-    // City.findOne({
-    //   where: { name: cityName },
-    //   include: Airport, // Include the associated Airport model
-    // })
-    // .then((city) => {
-    //   if (city) {
-    //     // Access the airports associated with the city
-    //     const airports = city.Airports;
-    //     console.log(`Airports in ${cityName}:`);
-    //     airports.forEach((airport) => {
-    //       console.log(airport.name);
-    //     });
-    //   } else {
-    //     console.log(`City ${cityName} not found.`);
-    //   }
-    // })
-    // .catch((error) => {
-    //   console.error('Error:', error);
-    // });
+    const city = await City.findOne({
+      where: {
+        id: 2
+      }
+    });
 
-    // const city = await City.findOne({
-    //   where: {
-    //     id: 2
-    //   }
-    // });
-    // const airport = await city.getAirports();
-    // console.log(city, airport);
-  })
+    // adding airport, have to use some cityId
+    // as we have used allowNull : false under cityId
+    const newAirport = Airport.findOne({
+      where: {
+        id: 5
+      }
+    });
+
+    await city.addAirport(newAirport);
+
+    //db.sequelize.sync({ alter: true });
+  });
 }
 
 setupAndStartServer();
