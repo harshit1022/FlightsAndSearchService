@@ -57,9 +57,12 @@ and then execute `npx sequelize db:migrate`
 ```
 npx sequelize model:generate --name Airport --attributes name:String,address:String,cityId:integer
 
+npx sequelize db:migrate
+
 ```
 
 ```
+npx sequelize-cli seed:generate --name demo-user
 npx sequelize db:seed:all
 
 ```
