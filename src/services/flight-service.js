@@ -10,9 +10,9 @@ class FlightService {
 
   async createFlight(data) {
     try {
-      if(!compareTime(data.arrivalTime, data.depatureTime)) {
-        throw {err: 'Arrival time needs to be greater than Departure time'};
-      }
+      // if(!compareTime(data.arrivalTime, data.depatureTime)) {
+      //   throw {error: 'Arrival time needs to be greater than Departure time'};
+      // }
       //const airplaneRepository = new AirplaneRepository();
       const airplane = await this.airplaneRepository.getAirplane(data.airplaneId);
       const flight = await this.flightRepository.createFlight({
@@ -26,8 +26,15 @@ class FlightService {
     }
   }
 
-  async getFlightData() {
-
+  async getAllFlightData(data) {
+    try {
+      const flights = await this.flightRepository.getAllFlights(data);
+      return flights;
+    } 
+    catch (error) {
+      console.log("Error occurred in Service Layer");
+      throw {error};       
+    }
   }
 }
 
